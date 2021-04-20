@@ -1,2 +1,2 @@
-# Disseny-App-Telematiques
+# Disseny-Apps-Telematiques
 Pràctiques de laboratori de DAT.
