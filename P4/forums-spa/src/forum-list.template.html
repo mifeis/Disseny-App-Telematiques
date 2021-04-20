@@ -1,0 +1,35 @@
+
+  <h2>Forum</h2>
+   
+  <div class="row" ng-if="!$ctrl.openedNewForum">
+    <div class="col-sm-offset-8">
+      <button type="button" class="btn btn-sm btn-info" ng-click="$ctrl.openNewForum()">
+        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+        New forum
+      </button>
+    </div>
+  </div>
+  <div ng-if="$ctrl.openedNewForum">
+    <div ng-if="$ctrl.maybeUser()!=null">
+      <new-forum on-submit="$ctrl.newForum(data)" on-cancel="$ctrl.closeNewForum()"></new-forum>
+    </div>
+    <div ng-if="$ctrl.maybeUser()==null">
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" ng-click="$ctrl.closeNewForum()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Warning!</strong> Authentification is required in order to do a new forum.
+      </div>
+    </div>
+  </div>
+  
+  <table class="table table-striped">
+    <thead><tr><th>Title</th><th>Description</th><th>Delete</th></tr></thead>
+    <tbody>
+      <tr ng-repeat="f in $ctrl.forums">
+        <td><a href="#!/forum-{{f.id}}">{{f.title}}</td><td><pre>{{f.description}}</pre></td>
+        <td class="col-xs-3" ng-if="$ctrl.maybeUser().name==f.moderator"><button class="btn btn-danger" ng-click="$ctrl.deleteForum(f.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+

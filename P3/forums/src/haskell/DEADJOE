@@ -1,0 +1,22 @@
+
+*** These modified files were found in JOE when it aborted on Sun Dec 27 21:10:50 2020
+*** JOE was aborted because the terminal closed
+
+*** File '(Unnamed)'
+forum.html
+src/templates/forum.html
+src/templates/forum.html
+src/templates/home.html
+src/haskell/Handler.hs
+Handler.hs
+View.hs
+forum.html
+home.html
+forum.html
+View.hs
+
+*** File '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc

@@ -1,0 +1,46 @@
+
+  <h2>Topic</h2>
+  <div class="jumbotron"><table class="table">
+    <tr><th>Author:</th><td>{{$ctrl.topic.user}}</td></tr>
+    <tr><th>Topic:</th><td>{{$ctrl.topic.title}}</td></tr>
+  </table></div>
+
+  <h3>Replies</h3>
+
+  <div class="row" ng-if="!$ctrl.openedNewPost">
+    <div class="col-sm-offset-8">
+      <button type="button" class="btn btn-sm btn-info" ng-click="$ctrl.openNewPost()">
+        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+        New reply
+      </button>
+    </div>
+  </div>
+  <div ng-if="$ctrl.openedNewPost">
+    <div ng-if="$ctrl.maybeUser()!=null">
+      <new-post on-submit="$ctrl.newPost(data)" on-cancel="$ctrl.closeNewPost()"></new-post>
+    </div>
+    <div ng-if="$ctrl.maybeUser()==null">
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" ng-click="$ctrl.closeNewPost()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Warning!</strong> Authentification is required in order to do new replies.
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr><th class="col-xs-3">
+        <a class="text-secondary" ng-click="$ctrl.toggleReversed()">
+          Data<span class="glyphicon glyphicon-triangle-{{$ctrl.reversed ? 'top':'bottom'}}" aria-hidden="true"></span>
+        </a> / For</th>
+      <th class="col-xs-9">Message</th>
+      <th class="col-xs-3" ng-if="$ctrl.isMod">Delete</th></tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="q in $ctrl.posts | orderBy : 'started' : $ctrl.reversed">
+        <td class="col-xs-3">{{q.posted | date : "d MMM,yyyy H:mm:ss"}}<br> for <em>{{q.user}}</em></td>
+        <td class="col-xs-9">{{q.message}}</td>
+        <td class="col-xs-3" ng-if="$ctrl.isMod"><button class="btn btn-danger" ng-click="$ctrl.deletePost(q.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>

@@ -1,0 +1,48 @@
+
+  <h2>Forum</h2>
+  <div class="jumbotron"><table class="table">
+    <tr><th>Moderator:</th><td>{{$ctrl.forum.moderator}}</td></tr>
+    <tr><th>Title:</th><td>{{$ctrl.forum.title}}</td></tr>
+    <tr><th>Description:</th><td><pre>{{$ctrl.forum.description}}</pre></td></tr>
+  </table></div>
+
+  <h3>Questions</h3>
+
+  <div class="row" ng-if="!$ctrl.openedNewTopic">
+    <div class="col-sm-offset-8">
+      <button type="button" class="btn btn-sm btn-info" ng-click="$ctrl.openNewTopic()">
+        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+        New question
+      </button>
+    </div>
+  </div>
+  <div ng-if="$ctrl.openedNewTopic">
+    <div ng-if="$ctrl.maybeUser()!=null">
+      <new-topic on-submit="$ctrl.newTopic(data)" on-cancel="$ctrl.closeNewTopic()"></new-topic>
+    </div>
+    <div ng-if="$ctrl.maybeUser()==null">
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" ng-click="$ctrl.closeNewTopic()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Warning!</strong> Authentification is required in order to do new questions.
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr><th class="col-xs-3">
+        <a class="text-secondary" ng-click="$ctrl.toggleReversed()">
+          Data<span class="glyphicon glyphicon-triangle-{{$ctrl.reversed ? 'top':'bottom'}}" aria-hidden="true"></span>
+        </a> / For</th>
+      <th class="col-xs-9">Title</th>
+      <th class="col-xs-3" ng-if="$ctrl.isMod">Delete</th></tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="t in $ctrl.topics | orderBy : 'started' : $ctrl.reversed">
+        <td class="col-xs-3">{{t.started | date : "d MMM,yyyy H:mm:ss"}}<br> for <em>{{t.user}}</em></td>
+        <td class="col-xs-9"><a href="#!/topic-{{t.id}}">{{t.title}}</td>
+        <td class="col-xs-3" ng-if="$ctrl.isMod"><button class="btn btn-danger" ng-click="$ctrl.deleteTopic(t.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+

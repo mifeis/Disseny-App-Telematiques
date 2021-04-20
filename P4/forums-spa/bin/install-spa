@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd $(dirname $0)/..
+
+# Configuracio de forumsApp SPA:
+src_spa_dir=src
+
+www_dir=~/public_html/practica4
+
+test -d $www_dir || mkdir -p $www_dir
+
+cp -v -uRd $src_spa_dir/* $www_dir/
+

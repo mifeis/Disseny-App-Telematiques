@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ca" ng-app="forumsApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Forum</title>
+
+  <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/minty/bootstrap.min.css">
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-route.min.js"></script>
+  <!-- App specific -->
+  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="oauth2/oauth2.service.js"></script>
+  <script type="text/javascript" src="forums-api.service.js"></script>
+  <script type="text/javascript" src="breadcrumb/breadcrumb.service.js"></script>
+  <script type="text/javascript" src="breadcrumb/breadcrumb.component.js"></script>
+  <script type="text/javascript" src="user/user.component.js"></script>
+  <script type="text/javascript" src="forum-list.component.js"></script>
+  <script type="text/javascript" src="forum.component.js"></script>
+  <script type="text/javascript" src="topic.component.js"></script>
+  <script type="text/javascript" src="new-forum.component.js"></script>
+  <script type="text/javascript" src="new-topic.component.js"></script>
+  <script type="text/javascript" src="new-post.component.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-sm-8"></div>
+    <div class="col-sm-4">
+      <user></user>
+    </div>
+  </div>
+
+  <breadcrumb></breadcrumb>
+
+  <div ng-view></div>
+
+</div>
+</body>
+</html>

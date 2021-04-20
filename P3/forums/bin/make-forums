@@ -1,0 +1,41 @@
+#!/bin/bash
+
+cd $(dirname $0)/..
+
+# -- Project configuration
+# Variables usades:
+#       src_dirs
+#       main_file
+#       build_dir
+#       cgi_dir
+#       exe_file
+#       extensions
+
+src_dirs=src/haskell
+main_file=src/haskell/Main.hs
+
+cgi_dir=~/public_html/practica3
+exe_file=$cgi_dir/forums.cgi
+
+build_dir=build
+
+extensions="TypeFamilies MultiParamTypeClasses FlexibleContexts FlexibleInstances
+            QuasiQuotes"
+
+# -- Compilation & Installation
+
+function exts_to_options {
+  acc=""
+  for ext in $@; do
+    acc="$acc -X$ext"
+  done
+  echo "$acc"
+}
+
+ghc_options="$(exts_to_options $extensions)"
+
+test -d $cgi_dir || mkdir -p $cgi_dir
+
+source ~WEBprofe/usr/share/bin/do-make-exe.sh
+chmod 700 $exe_file
+

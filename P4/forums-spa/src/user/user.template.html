@@ -1,0 +1,9 @@
+
+  <div ng-if="! $ctrl.maybeUser()">
+      <span class="glyphicon glyphicon-log-in"></span>
+      <a ng-click="$ctrl.login()">Login</a>
+  </div>
+  <div ng-if="$ctrl.maybeUser()">
+      <span class="glyphicon glyphicon-user"></span>Usuari: <b>{{$ctrl.maybeUser().name}}</b>
+  </div>
+

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Mou el directori de treball a l'arrel del projecte
+cd $(dirname $0)/..
+
+# Variables de configuració:
+#   main_file   Fitxer principal (el que conté el mòdul Main)
+#   src_dirs    Directoris on busca el codi font dels mòduls
+#   cgi_dir     Directori on instal.la el CGI compilat
+#   build_dir   Directori temporal on genera el codi binari
+
+src_dirs=src
+cgi_dir=~/public_html/practica2
+build_dir=build
+
+main_file=$1
+
+if test $# != 1; then
+  echo "Us: $0 NOM.hs" >&2
+  echo "  Compila el fitxer 'NOM.hs' i l'instal.la en el directori '$cgi_dir'" >&2
+  echo "   (amb el mateix nom però amb sufix '.cgi')" >&2
+  exit 1
+fi
+
+source ~WEBprofe/usr/share/bin/do-make-cgi
+

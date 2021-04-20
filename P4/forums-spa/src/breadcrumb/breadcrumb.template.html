@@ -1,0 +1,8 @@
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" ng-repeat="crumb in $ctrl.getPop()">
+      <a href="{{crumb.url}}">{{crumb.label}}</a></span>
+    </li>
+    <li class="breadcrumb-item active">{{$ctrl.getTop().label}}</li>
+  </ol>
+

@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <script>
+(function () {
+    /**
+     * Parses an escaped url query string into key-value pairs.
+     *
+     * @returns Object.<(string|boolean)>
+     */
+    function parseKeyValue(queryString) {
+        var obj = {};
+
+        queryString = (queryString || '').split('&');
+        queryString.forEach(function (kv) {
+            if (kv) {
+                var key_value = kv.split('=');
+                var key = decodeURIComponent(key_value[0]);
+                obj[key] = (key_value[1]) ? decodeURIComponent(key_value[1]) : true;
+            }
+        });
+        return obj;
+    }
+
+    // Get the URL's fragment (the part after the hash)
+    var queryString = window.location.hash.substring(1);
+    // Decodify the fragment and construct an object with the params
+    var params = parseKeyValue(queryString);
+
+    window.opener.postMessage(params, '*');
+    window.close();
+})();
+        </script>
+    </head>
+    <body>Redirecting...</body>
+</html>
+

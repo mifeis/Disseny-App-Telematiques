@@ -1,0 +1,19 @@
+
+  <form name="$ctrl.form" class="form-horizontal" role="form">
+    <div class="form-group" ng-class="{'has-error': $ctrl.form.message.$invalid}">
+      <label class="control-label col-sm-2" for="post-message">Text:</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" id="post-message" placeholder="Introduce the message of the new reply" name="message"
+                  ng-model="$ctrl.model.message" ng-required="true" ng-minlength="20" rows="5">
+        </textarea>
+        <div ng-if="$ctrl.form.message.$error.required" class="help-block">Text required</div>
+        <div ng-if="$ctrl.form.message.$error.minlength" class="help-block">Text too short (less than 20 characters)</div>
+      </div>
+    </div>
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="btn-group">
+        <button type="submit" class="btn btn-primary" ng-click="$ctrl.submit()" ng-disabled="$ctrl.form.$invalid">New reply</button>
+        <button type="button" class="btn btn-danger" ng-click="$ctrl.onCancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
