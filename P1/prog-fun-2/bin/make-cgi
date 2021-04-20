@@ -1,0 +1,19 @@
+#!/bin/bash
+
+prj_dir=$(cd $(dirname $0)/..; pwd)
+
+src_dirs=$prj_dir/src
+cgi_dir=~/public_html/practica1
+build_dir=$prj_dir/build
+
+main_file=$1
+
+if test $# != 1; then
+  echo "Us: $0 NOM.hs" >&2
+  echo "  Compila el fitxer 'NOM.hs' i l'instal.la en el directori '$cgi_dir'" >&2
+  echo "   (amb el mateix nom però amb sufix '.cgi')" >&2
+  exit 1
+fi
+
+source ~WEBprofe/usr/share/bin/do-make-cgi
+
